@@ -106,7 +106,7 @@ ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения ко�
 EMAIL_HOST = 'smtp.gmail.com';  
 EMAIL_PORT = 465;  
 EMAIL_HOST_USER = 'pingvein@gmail.com';  
-EMAIL_HOST_PASSWORD = 'TqnK7i8G';  
+EMAIL_HOST_PASSWORD = '';  
 EMAIL_USE_TLS = True;  
 
 #AUTH_PROFILE_MODULE = 'accounts.CustomUser'
