@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}Full Fish{% endblock %}</title>
+    <style>
+		#menu{
+			float:left;
+			width:300px;
+			background-color:#F1F2FC;
+		}
+		#content{
+			float:right;
+			width:70%;
+		}
+    </style>
+</head>
+
+<body>
+    <div id="header">{% block header %}{% endblock %}</div>
+	<div id="menu">
+		{% block menu %}{% endblock %}
+		{% if user.is_authenticated %}
+		<!-- Логін -->
+		{% for i in project_list %}
+		{{ project_list }}<br />
+		{% endfor%}
+		<a href="{% url auth_logout %}">выйти</a>.<br/><br/>
+		
+		{% else %}
+		
+		{% if form.non_field_errors %}
+		{{ form.non_field_errors }}
+		{% endif %}
+		
+		<form method="post" action="/account/login/">{% csrf_token %}
+			<dl class="register">
+			<dt><label for="id_username">Username</label>
+			<dd class="clearfix"><input id="id_username" type="text" name="username" maxlength="30" /></dd></dt>
+			<dt><label for="id_password">Password</label>
+			<dd class="clearfix"><input type="password" name="password" id="id_password" /></dd></dt></dl>
+			<input type="submit" value="Вход" / class="clearfix">
+		</form>
+   
+		<script type="text/javascript">
+		document.getElementById('id_username').focus()
+		</script>
+		<ul>
+			<li><a href="{% url auth_password_reset %}">Забыли пароль?</a></li>
+			<li><a href="{% url registration_register %}">Регистрация</a></li>
+		</ul>
+		<!-- /Логін -->
+		{% endif %}
+	</div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+ 

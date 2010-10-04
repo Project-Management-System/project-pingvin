@@ -1,0 +1,6 @@
+from django.db import models
+from django.contrib.auth.models import User, UserManager
+
+class CustomUser(User):
+    timezone = models.CharField(max_length=50, default='Europe/London')
+    objects = UserManager()
